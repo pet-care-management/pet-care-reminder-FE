@@ -1,11 +1,17 @@
-import { NavLink } from "react-router";
+import { NavLink } from "react-router"
 
-function Navbar () {
+function Navbar() {
     return (
-        <nav className="nav">
-            <NavLink className="nav-item" to="/" end>Home</NavLink>
-            {/* <NavLink className="nav-item" to="/reminders/new" end>Add reminder</NavLink> */}
-        </nav>
+        <header className="site-header">
+            <NavLink className="brand" to="/" end aria-label="home">
+                <span className="brand-mark" aria-hidden="true">P</span>
+            </NavLink>
+
+            <nav className="nav" aria-label="Main navigation">
+                <NavLink className="nav-item" to="/" end>Home</NavLink>
+                <NavLink className="nav-item" to="/pets">Pets</NavLink>
+            </nav>
+        </header>
     )
 }
 
