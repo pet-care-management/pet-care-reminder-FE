@@ -5,12 +5,15 @@ import ReminderCard from "../components/ReminderCard"
 
 function Home() {
         const [reminder, setReminder] = useState([]);
+        const [pet, setPet] = useState([])
         const [loading, setLoading] = useState(true);
         const [error, setError] = useState(null);
 
         useEffect(() => {
             fetchReminder()
-        }, [])    
+            fetchPet()
+        }, [])   
+
         async function fetchReminder() {
             try {
                 const response = await fetch("http://localhost:3000/reminder")
@@ -27,15 +30,29 @@ function Home() {
             }
         }
 
+        async function fetchPet() {
+            try {
+                const response = await fetch("http://localhost:3000/pets")
+                console.log(response)
+                if (!response.ok) {
+                    throw new Error(`Server responded with ${response.status}`);
+                }
+                const data = await response.json();
+                setPet(data)
+            } catch (err) {
+                setError(err.message)
+            } finally {
+                setLoading(false);
+            }
+        }
 
     return (
         <>
         <Navbar/>
         <div className="app">
             <h1>Pet Care</h1>
-
             <section className="card" >
-                {!loading && <p>Loading Reminder...</p>}
+                {loading && <p>Loading Reminder...</p>}
                 {error && <p className="error">Error: {error}</p>}
 
                 {!loading && !error && (
@@ -44,7 +61,7 @@ function Home() {
                             <p>No reminder yet.</p>
                         ) : (
                             reminder.map((reminder) => (
-                                <ReminderCard key={reminder.id} reminder={reminder}/>
+                                <ReminderCard key={reminder.id} reminder={reminder} pet={pet}/>
                             ))
                         )}
 
