@@ -6,7 +6,7 @@ const API_URL = "http://localhost:3000";
 
 // Getting Reminders from Neon
 async function getReminders() {
-  const response = await fetch(`${API_URL}/reminders`);
+  const response = await fetch(`${API_URL}/reminder`);
 
   if (!response.ok) {
     throw new Error("Could not load your reminders.");

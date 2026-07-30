@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 function ReminderCard({ reminder }) {
   //   Due date formatting
   const dueDate = new Date(reminder.dueDate);
@@ -24,21 +26,23 @@ function ReminderCard({ reminder }) {
   });
 
   return (
-    <article className="reminder-card">
-      <div className="card-heading">
-        <div>
-          <p className="card-pet-name">{reminder.pet.petName}</p>
-          <h3>{reminder.task}</h3>
+    <Link className="reminder-card-link" to={`/reminder/${reminder.id}`}>
+      <article className="reminder-card">
+        <div className="card-heading">
+          <div>
+            <p className="card-pet-name">{reminder.pet.petName}</p>
+            <h3>{reminder.task}</h3>
+          </div>
+
+          <span className={"status " + statusClass}>{statusText}</span>
         </div>
 
-        <span className={"status " + statusClass}>{statusText}</span>
-      </div>
-
-      {/* DueDateDisplaying */}
-      <div className="card-details">
-        <span>{formattedDueDate}</span>
-      </div>
-    </article>
+        {/* DueDateDisplaying */}
+        <div className="card-details">
+          <span>{formattedDueDate}</span>
+        </div>
+      </article>
+    </Link>
   );
 }
 

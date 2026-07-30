@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import AddReminder from "./pages/AddReminder"
 
 import Pets from "./pages/Pets";
+import ReminderDetail from "./pages/ReminderDetail";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/reminder/:id" element={<ReminderDetail />} />
         {/* <Route path="/reminders/:id" element={<ReminderDetail/>} /> */}
         <Route path="/reminders/new" element={<AddReminder />} />
         {/* <Route path="/pets" element={<Pets />} /> */}
