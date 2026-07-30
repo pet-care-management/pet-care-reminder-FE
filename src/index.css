@@ -385,13 +385,14 @@ code {
 }
 
 .status-active {
-  color: #2f6b4f;
-  background: #e2f3e8;
+  color: #8a5a12;
+  background: var(--coral-soft);
+
 }
 
 .status-completed {
-  color: #8a5a12;
-  background: var(--coral-soft);
+  color: #2f6b4f;
+  background: #e2f3e8;
 }
 
 .card-details {
@@ -498,8 +499,8 @@ code {
   box-shadow: var(--shadow);
 }
 
-.reminder-detail-card > .pet-card {
-   margin: 12px 0 24px;
+.reminder-detail-card>.pet-card {
+  margin: 12px 0 24px;
 }
 
 .reminder-detail-card h1 {
@@ -542,7 +543,7 @@ code {
 
 .detail-row .status-overdue {
   color: var(--danger);
-  background : transparent;
+  background: transparent;
 }
 
 @media (max-width: 600px) {

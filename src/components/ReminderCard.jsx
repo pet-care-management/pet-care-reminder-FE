@@ -26,7 +26,7 @@ function ReminderCard({ reminder }) {
   });
 
   return (
-    <Link className="reminder-card-link" to={`/reminder/${reminder.id}`}>
+    <Link className="reminder-card-link" to={`/reminders/${reminder.id}`}>
       <article className="reminder-card">
         <div className="card-heading">
           <div>
