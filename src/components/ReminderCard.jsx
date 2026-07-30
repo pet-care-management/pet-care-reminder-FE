@@ -1,18 +1,45 @@
-import { Link } from "react-router";
-
 function ReminderCard({ reminder }) {
-    return (
-        <li className="reminder-item" >
-            <Link className="link-button" to={`/reminder/${reminder.id}`} key={reminder.id}>
-            <p className="pet-id" >{reminder.pet.petName}</p>
-            <p className="reminder-task" >{reminder.task}</p>
-            <p className="reminder-notes" >{reminder.notes}</p>
-            {/* <p className="reminder-due" >{reminder.dueDate}</p>
-            <p className="reminder-status" >{reminder.isDone}</p> */}
-            </Link>
-        </li>
-    )
+  //   Due date formatting
+  const dueDate = new Date(reminder.dueDate);
+  const currentDate = new Date();
+  const isOverdue = reminder.isDone === false && dueDate < currentDate;
+
+  let statusText = "Active";
+  let statusClass = "status-active";
+
+  if (reminder.isDone === true) {
+    statusText = "Completed";
+    statusClass = "status-completed";
+  } else if (isOverdue === true) {
+    statusText = "Overdue";
+    statusClass = "status-overdue";
+  }
+
+  const formattedDueDate = dueDate.toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+
+  return (
+    <article className="reminder-card">
+      <div className="card-heading">
+        <div>
+          <p className="card-pet-name">{reminder.pet.petName}</p>
+          <h3>{reminder.task}</h3>
+        </div>
+
+        <span className={"status " + statusClass}>{statusText}</span>
+      </div>
+
+      {/* DueDateDisplaying */}
+      <div className="card-details">
+        <span>{formattedDueDate}</span>
+      </div>
+    </article>
+  );
 }
-//{reminder.reminder}
 
 export default ReminderCard;
