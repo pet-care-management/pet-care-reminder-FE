@@ -131,6 +131,7 @@ function Home() {
             Overdue<span>{overdueCount}</span>
           </button>
         </div>
+
         {/* Displaying */}
         {/* Loading */}
         {loading && <p>Loading reminders...</p>}
