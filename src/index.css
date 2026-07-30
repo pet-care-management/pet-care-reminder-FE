@@ -426,7 +426,7 @@ code {
 }
 
 .pet-species {
-  color: var(--ink);
+  color: var(--primary);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.08em;
