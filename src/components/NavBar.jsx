@@ -1,6 +1,10 @@
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 
 function Navbar () {
+    const location = useLocation(); 
+
+    const isReminderPage = location.pathname === "/" || location.pathname.startsWith("/reminder");
+    // the above code is for the remidner page to have the HOME on the navbar highlighted when making and checking reminders
     return (
         <header className="site-header">
             <NavLink className="brand" to="/" end>
@@ -8,8 +12,13 @@ function Navbar () {
             </NavLink>
 
             <nav className="nav">
-                <NavLink className="nav-item" to="/" end>Home</NavLink>
-                <NavLink className="nav-item" to="/pets" end>Pets</NavLink>
+                <NavLink className={`nav-item ${isReminderPage ? "active" : ""}`} to = "/" end>
+                    Home
+                </NavLink>
+                <NavLink className="nav-item" to="/pets" end> 
+                {/* maybe remove the end above since when making a new pet page loads, pets wont be highlighted */}
+                    Pets
+                </NavLink>
             </nav>
         </header>
     )
