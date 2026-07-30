@@ -3,6 +3,8 @@ import { useNavigate } from "react-router";
 
 import Navbar from "../components/Navbar";
 
+const API_URL = "http://localhost:3000"
+
 export default function AddReminder() {
   const [form, setForm] = useState({
     petId: "",
@@ -15,7 +17,7 @@ export default function AddReminder() {
   useEffect(()=>{
     async function fetchPet() {
             try {
-                const response = await fetch("http://localhost:3000/pets")
+                const response = await fetch("API_URL/pets")
                 console.log(response)
                 if (!response.ok) {
                     throw new Error(`Server responded with ${response.status}`);
