@@ -2,12 +2,16 @@ import { NavLink } from "react-router";
 
 function Navbar () {
     return (
-        <nav className="nav">
-            <NavLink className="nav-item" to="/" end>Home</NavLink>
-            <NavLink className="nav-item" to="/pets">Pets</NavLink>
-            {/* <NavLink className="nev-item" to="/reminder">Reminder</NavLink> */}
-            {/* <NavLink className="nav-item" to="/reminders/new" end>Add reminder</NavLink> */}
-        </nav>
+        <header className="site-header">
+            <NavLink className="brand" to="/" end>
+                <span className="brand-mark">P</span>
+            </NavLink>
+
+            <nav className="nav">
+                <NavLink className="nav-item" to="/" end>Home</NavLink>
+                <NavLink className="nav-item" to="/pets" end>Pets</NavLink>
+            </nav>
+        </header>
     )
 }
 
