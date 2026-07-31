@@ -520,10 +520,13 @@ code {
   width: 60%;
   height: 45px;
   border-radius: 8px;
+}
+
 .reminder-detail-page {
   width: min(620px, calc(100% - 40px));
   margin: 48px auto;
   text-align: left;
+
 }
 
 .back-link {
