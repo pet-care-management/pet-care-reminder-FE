@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router";
 import ReminderCard from "../components/ReminderCard";
 
-
 const API_URL = "http://localhost:3000";
 
 // Getting Reminders from Neon
@@ -78,19 +77,19 @@ function Home() {
   );
 
   async function deleteReminder(id) {
-   try{ 
-        const response =  await fetch(`${API_URL}/reminders/${id}`, {
-          method: "DELETE",
-        })
-        console.log("deleted reminder id:", response)
-    if (!response.ok) {
+    try {
+      const response = await fetch(`${API_URL}/reminders/${id}`, {
+        method: "DELETE",
+      });
+      console.log("deleted reminder id:", response);
+      if (!response.ok) {
         throw new Error(`Server response with ${response.status}`);
+      }
+      setReminders((reminder) => reminder.filter((rem) => rem.id != id));
+    } catch (err) {
+      setError("Failed to delete the reminder.");
     }
-    setReminders(reminder => reminder.filter((rem) => rem.id != id))
-    
-  } catch (err) {
-        setError("Failed to delete the reminder.")
-  }}
+  }
 
   return (
     <main className="page-container">
@@ -110,7 +109,6 @@ function Home() {
 
       {/* Reminder Section */}
       <section className="content-panel">
-
         {/* Filter Bar with Filter Buttons */}
         <div className="filter-bar">
           <button
@@ -168,7 +166,11 @@ function Home() {
         {!loading && !error && filteredReminders.length > 0 && (
           <div className="reminder-list">
             {filteredReminders.map((reminder) => (
-              <ReminderCard key={reminder.id} reminder={reminder} deleteReminder={deleteReminder}/>
+              <ReminderCard
+                key={reminder.id}
+                reminder={reminder}
+                deleteReminder={deleteReminder}
+              />
             ))}
           </div>
         )}

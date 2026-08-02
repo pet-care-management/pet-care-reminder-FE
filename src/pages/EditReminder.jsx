@@ -81,7 +81,7 @@ export default function EditReminder() {
       }
       const data = await response.json();
       // setSelectedPetId(data)
-      console.log(data)
+      console.log(data);
       Navigate(`/`);
     } catch (err) {
       console.error("Failed to update reminder:", err);
@@ -90,7 +90,7 @@ export default function EditReminder() {
     }
   }
 
-  // function where which later is passed on the onChange inside input field
+  // function which will later gets passed on the onChange inside input field
   function onFormChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
     console.log(e.target.name, e.target.value);

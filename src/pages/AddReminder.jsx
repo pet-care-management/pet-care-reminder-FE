@@ -148,7 +148,7 @@ export default function AddReminder() {
             value={form.dueDate}
             onChange={onFormChange}
           />
-          <button  type="submit" className="button button-primary">
+          <button type="submit" className="button button-primary">
             Add Reminder
           </button>
         </form>
