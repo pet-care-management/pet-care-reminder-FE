@@ -1,6 +1,8 @@
 import { Link } from "react-router";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
-function ReminderCard({ reminder }) {
+function ReminderCard({ reminder, deleteReminder }) {
   //   Due date formatting
   const dueDate = new Date(reminder.dueDate);
   const currentDate = new Date();
@@ -25,9 +27,13 @@ function ReminderCard({ reminder }) {
     minute: "2-digit",
   });
 
+  const handleCick = () => {
+    alert(`Reminder ${reminder.id} is deleted. `)
+  }
   return (
-    <Link className="reminder-card-link" to={`/reminders/${reminder.id}`}>
+    
       <article className="reminder-card">
+    <Link className="reminder-card-link" to={`/reminders/${reminder.id}`}>
         <div className="card-heading">
           <div>
             <p className="card-pet-name">{reminder.pet.petName}</p>
@@ -41,8 +47,15 @@ function ReminderCard({ reminder }) {
         <div className="card-details">
           <span>{formattedDueDate}</span>
         </div>
-      </article>
     </Link>
+    {/* https://react-icons.github.io/react-icons/search/#q=edit */}
+    <span className="delete-icon" onClick={() => { 
+        if (window.confirm("Are you sure you want to delete this reminder?")) //window.confirm pops up the alert kind of box
+        deleteReminder(reminder.id)}} ><MdDelete /></span>
+
+      <Link className="edit-icon" to={`/reminders/${reminder.id}/edit`}><FaEdit/></Link>
+      </article>
+    
   );
 }
 

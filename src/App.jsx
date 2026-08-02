@@ -5,6 +5,7 @@ import Pets from "./pages/Pets";
 import ReminderDetail from "./pages/ReminderDetail";
 import AddReminder from "./pages/AddReminder";
 import AddPet from "./pages/AddPet";
+import EditReminder from "./pages/EditReminder"
 
 function App() {
   return (
@@ -14,10 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/reminders/:id" element={<ReminderDetail />} />
-        {/* <Route path="/reminders/:id" element={<ReminderDetail/>} /> */}
+        <Route path="/reminders/:id/edit" element={<EditReminder/>} />
         <Route path="/reminders/new" element={<AddReminder />} />
-        {/* <Route path="/pets" element={<Pets />} /> */}
-        {/* <Route path="/pets/new" element={<AddPet />} /> */}
         <Route path="/pets" element={<Pets />} />
         <Route path="/pets/new" element={<AddPet />} />
         <Route path="*" element={<Navigate to="/" replace />} />
