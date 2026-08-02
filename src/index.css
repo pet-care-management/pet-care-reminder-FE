@@ -345,6 +345,7 @@ code {
 }
 
 .reminder-card {
+  position: relative;
   padding: 18px;
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -726,3 +727,24 @@ code {
   background: var(--danger-soft);
   font-size: 13px;
 }
+
+.edit-icon {
+  position: absolute; /* Pulls the icon out of normal document flow */
+  top: 16px;          /* Distance from the top edge */
+  right: 100px;        /* Distance from the right edge */
+  font-size: 20px;    
+  color: #4a5568;     
+  cursor: pointer;
+}
+
+.delete-icon {
+   position: absolute; /* Pulls the icon out of normal document flow */
+  top: 16px;          /* Distance from the top edge */
+  right: 150px;        /* Distance from the right edge */
+  font-size: 20px;   
+  color: #4a5568;     
+  cursor: pointer;
+}
+
+
+
