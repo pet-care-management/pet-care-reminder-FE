@@ -65,7 +65,10 @@ function Pets() {
         {!loading && !error && pets.length > 0 && (
           <div className="pet-grid">
             {pets.map((pet) => (
-              <PetCard key={pet.petId} pet={pet} />
+              /* <PetCard key={pet.petId} pet={pet} /> changing this so that I can wrap a Link to it so that it can be clicked on */
+              <Link className="pet-card-link" to={`/pets/${pet.petId}`} key={pet.petId}>
+              <PetCard pet={pet}/>
+              </Link>
             ))}
           </div>
         )}

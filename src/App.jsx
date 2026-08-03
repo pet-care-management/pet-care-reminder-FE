@@ -5,6 +5,7 @@ import Pets from "./pages/Pets";
 import ReminderDetail from "./pages/ReminderDetail";
 import AddReminder from "./pages/AddReminder";
 import AddPet from "./pages/AddPet";
+import PetReminderDetail from "./pages/PetReminderDetail";
 import EditReminder from "./pages/EditReminder"
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/reminders/new" element={<AddReminder />} />
         <Route path="/pets" element={<Pets />} />
         <Route path="/pets/new" element={<AddPet />} />
+        <Route path="/pets/:id" element={<PetReminderDetail />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
 
