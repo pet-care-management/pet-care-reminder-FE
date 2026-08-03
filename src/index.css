@@ -522,13 +522,6 @@ code {
   border-radius: 8px;
 }
 
-.reminder-detail-page {
-  width: min(620px, calc(100% - 40px));
-  margin: 48px auto;
-  text-align: left;
-
-}
-
 .back-link {
   display: inline-block;
   margin-bottom: 20px;
@@ -542,6 +535,11 @@ code {
   color: var(--primary-dark);
 }
 
+.page-container > .back-link {
+  display: block;
+  width: fit-content;
+}
+
 .reminder-detail-card {
   padding: 32px;
   border: 1px solid var(--border);
@@ -552,23 +550,6 @@ code {
 
 .reminder-detail-card>.pet-card {
   margin: 12px 0 24px;
-}
-
-.reminder-detail-card h1 {
-  margin: 4px 0 28px;
-  color: var(--ink);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 43px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
-
-.detail-label {
-  color: var(--text);
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .detail-row {
@@ -598,10 +579,6 @@ code {
 }
 
 @media (max-width: 600px) {
-  .reminder-detail-page {
-    margin: 28px auto;
-  }
-
   .reminder-detail-card {
     padding: 24px;
   }
@@ -749,4 +726,11 @@ code {
   border-radius: 14px;
   outline: 3px solid var(--primary-soft);
   outline-offset: 3px;
+}
+
+.complete-reminder-button {
+  width: 100%;
+  margin-top: 24px;
+  box-sizing: border-box;
+  cursor: pointer;
 }
