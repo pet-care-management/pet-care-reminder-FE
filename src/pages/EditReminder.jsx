@@ -73,7 +73,7 @@ export default function EditReminder() {
       const response = await fetch(`${API_URL}/reminders/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, isDone: false }),
+        body: JSON.stringify(form),
       });
 
       if (!response.ok) {

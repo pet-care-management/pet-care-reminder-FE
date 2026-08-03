@@ -58,9 +58,12 @@ function ReminderDetail() {
     setError(null);
 
     try {
-      const response = await fetch(`http://localhost:3000/reminders/${id}`, {
-        method: "PATCH",
-      });
+      const response = await fetch(
+        `http://localhost:3000/reminders/${id}/complete`,
+        {
+          method: "PATCH",
+        },
+      );
 
       const data = await response.json();
 
