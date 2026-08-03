@@ -80,6 +80,28 @@ function PetReminderDetail() {
       new Date(firstReminder.dueDate) - new Date(secondReminder.dueDate),
   );
 
+  async function deleteReminder(reminderId) {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/reminders/${reminderId}`,
+        { method: "DELETE" },
+      );
+
+      if (!response.ok) {
+        throw new Error(`Server responded with ${response.status}`);
+      }
+
+      setPet((currentPet) => ({
+        ...currentPet,
+        reminders: currentPet.reminders.filter(
+          (reminder) => reminder.id !== reminderId,
+        ),
+      }));
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
   return (
     <main className="page-container">
       <Link className="back-link" to="/pets">
@@ -150,6 +172,7 @@ function PetReminderDetail() {
                 <ReminderCard
                     key={reminder.id}
                     reminder={{ ...reminder, pet }}
+                    deleteReminder={deleteReminder}
                 />
                 ))}
             </div>

@@ -345,6 +345,7 @@ code {
 }
 
 .reminder-card {
+  position: relative;
   padding: 18px;
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -356,14 +357,14 @@ code {
   text-decoration: none;
 }
 
-.reminder-card-link .reminder-card {
+.reminder-card {
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease,
     transform 0.2s ease;
 }
 
-.reminder-card-link:hover .reminder-card {
+.reminder-card:hover {
   border-color: var(--primary);
   box-shadow: var(--shadow);
   transform: translateY(-2px);
@@ -734,3 +735,28 @@ code {
   box-sizing: border-box;
   cursor: pointer;
 }
+.edit-icon {
+  position: absolute; /* Pulls the icon out of normal document flow */
+  top: 16px;          /* Distance from the top edge */
+  right: 100px;        /* Distance from the right edge */
+  font-size: 20px;    
+  color: #4a5568;     
+  cursor: pointer;
+}
+
+.delete-icon {
+   position: absolute; /* Pulls the icon out of normal document flow */
+  top: 16px;          /* Distance from the top edge */
+  right: 150px;        /* Distance from the right edge */
+  font-size: 20px;   
+  color: #4a5568;     
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.delete-icon:hover {
+  color: var(--danger);
+}
+
+
+

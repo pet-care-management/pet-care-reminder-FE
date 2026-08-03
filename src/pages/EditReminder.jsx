@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
-
+import { useNavigate, useParams } from "react-router";
 import Navbar from "../components/Navbar";
-// import './index.css'
+import PetCard from "../components/PetCard";
 
 const API_URL = "http://localhost:3000";
 
-export default function AddReminder() {
+export default function EditReminder() {
+  const { id } = useParams();
   const Navigate = useNavigate();
   const [form, setForm] = useState({
     petId: "",
@@ -20,24 +20,45 @@ export default function AddReminder() {
   const [formError, setFormError] = useState("");
 
   useEffect(() => {
-    async function fetchPet() {
-      try {
-        const response = await fetch(`${API_URL}/pets`);
-        console.log(response);
-        if (!response.ok) {
-          throw new Error(`Server responded with ${response.status}`);
-        }
-        const data = await response.json();
-        setPets(data);
-        setForm({ ...form, petId: data[0].petId });
-        console.log(data);
-      } catch (err) {
-        console.error(err.message);
-      }
-    }
+    reminder();
     fetchPet();
-  }, []);
+  }, [id]);
 
+  async function reminder() {
+    try {
+      const response = await fetch(`${API_URL}/reminders/${id}`);
+      console.log(response);
+      if (!response.ok) {
+        throw new Error(`Server responded with ${response.status}`);
+      }
+      const data = await response.json();
+      setForm({
+        petId: data.petId,
+        task: data.task,
+        dueDate: data.dueDate?.slice(0, 16),
+        notes: data.notes,
+      });
+      console.log(data);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
+  async function fetchPet() {
+    try {
+      const response = await fetch(`${API_URL}/pets`);
+      console.log(response);
+      if (!response.ok) {
+        throw new Error(`Server responded with ${response.status}`);
+      }
+      const data = await response.json();
+      setPets(data);
+      //   setForm({ ...form });
+      //   console.log(data);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -49,8 +70,8 @@ export default function AddReminder() {
 
     try {
       console.log(form);
-      const response = await fetch(`${API_URL}/reminders`, {
-        method: "POST",
+      const response = await fetch(`${API_URL}/reminders/${id}`, {
+        method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, isDone: false }),
       });
@@ -63,17 +84,18 @@ export default function AddReminder() {
       console.log(data);
       Navigate(`/`);
     } catch (err) {
-      console.error("Failed to create reminder:", err);
+      console.error("Failed to update reminder:", err);
 
-      setFormError("Failed to add the reminder.");
+      setFormError("Failed to update the reminder.");
     }
   }
 
-  // function where which later is passed on the onChange inside input field
+  // function which will later gets passed on the onChange inside input field
   function onFormChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
     console.log(e.target.name, e.target.value);
   }
+
   return (
     <>
       <section className="content-panel">
